@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 const teacherAccount = new mongoose.Schema({
    teacher: {                      // single reference to Students
       type: Schema.Types.ObjectId,
-      ref: "Teacher",
+      ref: "Teachers",
       required: true
    },
    email: {                        // store actual email for quick lookup
@@ -36,13 +36,18 @@ teacherAccount.pre("save", async function (next) {
   next();
 });
 
+
+teacherAccount.methods.isPasswordCorrect = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
 // JWT methods
 teacherAccount.methods.generateAccessToken = function() {
     return jwt.sign(
         {
-            _id: this._id,
-            email: this.email,
-            studentId: this.student
+           _id: this._id,
+      email: this.email,
+      teacherId: this.teacher // ✅ correct
         },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
@@ -57,4 +62,4 @@ teacherAccount.methods.generateRefreshToken = function() {
     );
 };
 
-export const TeacherAccount = mongoose.model("TeacherAccount", teacherAccount);
+export const TeacherAccounts = mongoose.model("TeacherAccounts", teacherAccount);

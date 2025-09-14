@@ -5,7 +5,7 @@ import Beams from "./Beams"; // 👈 import your Sentry background
 
 export default function LoginPage() {
   const [role, setRole] = useState("student");
-  const [myhue,setmyhue]=useState(2)
+  const [myhue,setmyhue]=useState(0)
 
   const themes = {
     student: {
@@ -16,12 +16,12 @@ export default function LoginPage() {
     teacher: {
       icon: <FaChalkboardTeacher className="text-6xl text-blue-400" />,
       accent: "blue",
-       hue:17,
+       hue:1.2,
     },
     staff: {
       icon: <FaUserTie className="text-6xl text-pink-400" />,
       accent: "pink",
-       hue:29,
+       hue:0.029,
     },
     admin: {
       icon: <FaUserShield className="text-6xl text-purple-400" />,
@@ -64,6 +64,7 @@ export default function LoginPage() {
           <h1 className="text-3xl font-bold text-white mb-6 capitalize tracking-wide text-center">
             {role} Login
           </h1>
+          <a className="p" href="">here</a>
 
           {/* Role Switcher */}
           <div className="flex justify-center gap-3 mb-6 flex-wrap">

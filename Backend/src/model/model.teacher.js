@@ -51,6 +51,10 @@ const teacherSchema = new mongoose.Schema({
         lowercase:true,
         trim:true,
     },
+    age:{
+        type:String,
+        required:true
+    },
     bloodGroup:{
         type:String,
         lowercase:true,
@@ -59,6 +63,7 @@ const teacherSchema = new mongoose.Schema({
     disability:{   // corrected spelling
         type:Boolean,
         required:true,
+        disability:false
     },
     religion:{
         type:String,
@@ -74,6 +79,7 @@ const teacherSchema = new mongoose.Schema({
     },
     avatar:{
         type:String,
+        default:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmLek_EMsLT1OGhqew1lkhIXammaiIBcLZJg&s"
     },
     salary:{
         type:String,
@@ -84,4 +90,4 @@ const teacherSchema = new mongoose.Schema({
 
 },{timestamps:true})
 
-export const Teacher = mongoose.model('Teacher', teacherSchema);
+export const Teachers = mongoose.model('Teachers', teacherSchema);

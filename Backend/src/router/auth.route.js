@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {upload} from "../middleware/multer.middleware.js"
 // import {verifyJWT} from "../middleware/auth.middleware.js"
-import {createStudent,loginStudent} from "../controller/auth.controller.js"
+import {createStudent,loginStudent,createTeacher,loginTeacher} from "../controller/auth.controller.js"
 
 const router = Router();
 router.route("/register-newstudent").post(upload.fields([
@@ -12,5 +12,13 @@ router.route("/register-newstudent").post(upload.fields([
     ]),createStudent)
     
 router.route("/login-student").post(loginStudent)
+
+router.route("/register-newteacher").post(upload.fields([
+  {
+    name:"avatar",
+    maxCount:1
+  }
+]),createTeacher)
+router.route("/login-teacher").post(loginTeacher)
 
 export default router;
