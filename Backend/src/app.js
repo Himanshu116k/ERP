@@ -2,6 +2,12 @@ import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser";
 
+import courseRoutes from "./router/course.route.js";
+import batchRoutes from "./router/batch.route.js";
+import subjectRoutes from "./router/subject.route.js";
+import enrollmentRoutes from "./router/enrollment.route.js";
+import attendanceRoutes from "./router/attendance.route.js";
+
 const app= express();
 app.use(cors({
     origin:process.env.CORS_ORIGIN,
@@ -24,9 +30,22 @@ import adminRouter from"./router/auth.route.js"// the name is "router" but we ar
                                                // in user.routes.js.
 
 
+app.use("/api/courses", courseRoutes);
+app.use("/api/batches", batchRoutes);
+app.use("/api/subjects", subjectRoutes);
+app.use("/api/enrollments", enrollmentRoutes);
+app.use("/api/attendance", attendanceRoutes);
+
+
+
+
+
+
 //routes declaration
 app.use("/api/v1/users",adminRouter)//good practice:- telling api and ites version
 //this is how route work:---> http://localhost:8000/api/v1/users/register-newstudent
+app.use("/api/v1/courses",courseRoutes)
+app.use("/api/v1/batch",batchRoutes)
 
 
 export{app}

@@ -50,7 +50,6 @@ const loginStudent = asynchandler(async (req, res) => {
   );
   const Pvalue = await StudentAccount.findOne()
     .populate("student")
-    .exec()
     .select("-password -refreshToken");
   const options = {
     httpOnly: true,
@@ -91,6 +90,7 @@ const createStudent = asynchandler(async (req, res) => {
       nationality,
       tenthMarks,
       twelfthMarks,
+      batch
     } = req.body;
     console.log(req.body);
 
@@ -106,7 +106,8 @@ const createStudent = asynchandler(async (req, res) => {
       !gender ||
       !dob ||
       !religion ||
-      !nationality
+      !nationality||
+      !batch
     ) {
       const missingFields = requiredFields.filter((field) => !req.body[field]);
 
@@ -158,6 +159,7 @@ const createStudent = asynchandler(async (req, res) => {
       tenthMarks,
       twelfthMarks,
       avatar: avatarUrl,
+      batch
     });
 
     const studentAccount = await StudentAccount.create({

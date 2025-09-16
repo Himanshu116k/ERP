@@ -10,7 +10,8 @@ class ApiError extends Error{
         this.data=null;
         this.message= message;
         this.success=false;
-        this.errors=errors;
+        // this.errors=errors;
+        this.errorMessage = message; // 👈 apna field explicitly
         
 
         if(stack){

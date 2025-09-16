@@ -88,6 +88,11 @@ const studentSchema = new mongoose.Schema({
         type:String,
         default:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8oghbsuzggpkknQSSU-Ch_xep_9v3m6EeBQ&s"
     },
+    batch:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Batches',
+        required:true,
+    },
     tenthMarks:{
         type:Number
     },
